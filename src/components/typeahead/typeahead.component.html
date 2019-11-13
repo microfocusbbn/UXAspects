@@ -10,9 +10,9 @@
      (loading)="loading = true"
      (loaded)="loading = false; onLoadedHighlight($event)">
 
-    <ol *ngIf="(recentOptionsWrapped$ | async) && (recentOptionsWrapped$ | async).length>0"
+    <ol *ngIf="(recentOptions$ | async)?.length > 0"
         class="ux-typeahead-recent-options">
-        <li *ngFor="let option of (recentOptionsWrapped$ | async)"
+        <li *ngFor="let option of recentOptions$ | async"
             [class.disabled]="isDisabled(option)"
             [class.highlighted]="(highlightedKey === option.key) && (highlightedIsRecentOption === option.isRecentOption)"
             [class.active]="activeKey === option.key"
@@ -25,7 +25,7 @@
             (mouseover)="highlight(option)">
 
             <ng-container [ngTemplateOutlet]="optionTemplate || defaultOptionTemplate"
-                          [ngTemplateOutletContext]="{option: option.value, api: optionApi}">
+                          [ngTemplateOutletContext]="{ option: option.value, api: optionApi }">
             </ng-container>
         </li>
     </ol>

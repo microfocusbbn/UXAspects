@@ -1,19 +1,5 @@
 import { FocusOrigin } from '@angular/cdk/a11y';
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    EventEmitter,
-    HostBinding,
-    HostListener,
-    Input,
-    OnChanges,
-    OnDestroy,
-    Output,
-    SimpleChanges,
-    TemplateRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, OnDestroy, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { InfiniteScrollLoadedEvent, InfiniteScrollLoadFunction } from '../../directives/infinite-scroll/index';
@@ -35,7 +21,6 @@ let uniqueId = 0;
     }
 })
 export class TypeaheadComponent<T = any> implements OnChanges, OnDestroy {
-    private _recentOptions: T[];
 
     /** Define a unique id for the typeahead */
     @Input() @HostBinding('attr.id') id: string = `ux-typeahead-${++uniqueId}`;
@@ -103,11 +88,12 @@ export class TypeaheadComponent<T = any> implements OnChanges, OnDestroy {
     }
 
     /** Container for saving the recently selected options. */
-    @Input() set recentOptions(newValue: ReadonlyArray<T>) {
-        this._recentOptions = newValue ? [...newValue] : undefined;
-        if (newValue) {
-            this.recentOptionsWrapped$.next(
-                newValue.map((value: T) => ({value: value, key: this.getKey(value), isRecentOption: true}))
+    @Input() set recentOptions(options: ReadonlyArray<T>) {
+        this._recentOptions = options ? [...options] : undefined;
+
+        if (options) {
+            this.recentOptions$.next(
+                options.map((value: T) => ({ value: value, key: this.getKey(value), isRecentOption: true }))
             );
         }
     }
@@ -138,12 +124,17 @@ export class TypeaheadComponent<T = any> implements OnChanges, OnDestroy {
     highlightedIsRecentOption: boolean = false;
     loadOptionsCallback: InfiniteScrollLoadFunction;
     visibleOptions$ = new BehaviorSubject<TypeaheadVisibleOption<T>[]>([]);
-    recentOptionsWrapped$ = new BehaviorSubject<TypeaheadVisibleOption<T>[]>(null);
+
+    /** Store the recent options in a typeahead format */
+    recentOptions$ = new BehaviorSubject<ReadonlyArray<TypeaheadVisibleOption<T>>>(null);
 
     get highlighted(): T {
         const value = this.highlighted$.getValue();
         return value ? value.value : null;
     }
+
+    /** Store the list of recent items */
+    private _recentOptions: ReadonlyArray<T>;
 
     private _onDestroy = new Subject<void>();
 
@@ -252,19 +243,24 @@ export class TypeaheadComponent<T = any> implements OnChanges, OnDestroy {
         this.select(option, 'mouse');
 
         if (this._recentOptions) {
+            // create a new instance of the recent items array that we can mutate
+            const recentOptions = [...this._recentOptions];
+
             // If the option is already in the array, remove it first.
-            const index = this._recentOptions.indexOf(option.value);
+            const index = recentOptions.indexOf(option.value);
 
             if (index > -1) {
-                this._recentOptions.splice(index, 1);
+                recentOptions.splice(index, 1);
             }
 
-            let numberOfElements = this._recentOptions.unshift(option.value);
+            const numberOfElements = recentOptions.unshift(option.value);
+
             if (numberOfElements > this.recentOptionsMaxCount) {
-                this._recentOptions.pop();
+                recentOptions.pop();
             }
 
-            this.recentOptions = this._recentOptions;
+            // update the list of recent options
+            this.recentOptions = recentOptions;
         }
     }
 
