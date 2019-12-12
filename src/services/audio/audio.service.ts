@@ -17,10 +17,15 @@ export class AudioService {
         return Observable.create((observer: Observer<AudioMetadata>) => {
             this._http.get(mediaElement.src, { responseType: 'blob' }).subscribe(response => {
 
-                const filename = mediaElement.src.substring(mediaElement.src.lastIndexOf('/') + 1);
                 const extension = mediaElement.src.substring(mediaElement.src.lastIndexOf('.') + 1).toLowerCase();
-
                 let description;
+                let filenameType = true;
+
+                if (filenameType) {
+                    const filename = "somename here lad"
+                } else if (!filenameType) {
+                    const filename = mediaElement.src.substring(mediaElement.src.lastIndexOf('/') + 1);
+                }
 
                 switch (extension) {
                     case 'mp3':

@@ -23,6 +23,18 @@
                         <ux-radio-button [(value)]="mode" option="quiet" [disabled]="type === 'audio'">Quiet</ux-radio-button>
                     </div>
                 </div>
+                <div class="row uxd-customize-row">
+                    <div class="col-md-7 col-sm-12">
+                        <label for="dataSet">Title Type</label>
+                        <ux-radio-button [(value)]="titleType" option="filename" [disabled]="type === 'audio'">File Name</ux-radio-button>
+                        <ux-radio-button [(value)]="titleType" option="inputName" [disabled]="type === 'audio'">Input Name</ux-radio-button>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-12">
+                    <label for="placeholder">Input Name</label>
+                    <input type="text" name="placeholder" class="form-control">
+                </div>
             </ux-accordion-panel>
         </ux-accordion>
     </div>

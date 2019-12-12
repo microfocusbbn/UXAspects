@@ -14,9 +14,10 @@ export class ComponentsMediaPlayerComponent extends BaseDocumentationSection imp
 
     type: string = 'video';
     mode: string = 'standard';
+    titleType: string = 'filename';
 
     videoSource: string = require('../../../../../assets/media/catchingwave.mp4');
-    audioSource: string = require('../../../../../assets/media/Ocean-Waves.mp3');
+    audioSource: string = require('../../../../../assets/media/bants.mp3');
     subtitles: string = require('!!file-loader!../../../../../assets/media/subtitles.vtt');
 
     playground: IPlayground = {
