@@ -64,7 +64,8 @@
             </g>
         </svg>
 
-        <p class="audio-file-name">{{ (audioMetadata | async)?.filename }}</p>
+        <p *ngIf="this.displayName" class="audio-file-name audio-display-name">{{ this.displayName }}</p>
+        <p *ngIf="!this.displayName" class="audio-file-name">{{ (audioMetadata | async)?.filename }}</p>
         <p class="audio-file-format">{{ (audioMetadata | async)?.description }}</p>
         <p class="audio-file-size">{{ (audioMetadata | async)?.size | fileSize }}</p>
 

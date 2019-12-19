@@ -3,6 +3,9 @@
 </ux-media-player>
 <ux-media-player *ngIf="type === 'audio'" class="media-player" type="audio" [displayName]="displayName" [source]="audioSource"></ux-media-player>
 
+<h2>Choose File</h2>
+<input type="file" (change)="selectFile($event)">
+
 <div class="row uxd-customize-example">
     <div class="col-md-12">
         <ux-accordion>
@@ -25,8 +28,8 @@
                 </div>
 
                 <div class="row uxd-customize-row">
-                    <div class="col-sm-6 col-xs-12">
-                        <label for="dataSet">Display Name</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="col-ms-4" for="dataSet">Display Name</label>
                         <input [(ngModel)]="displayName" type="text" placeholder="Enter text" class="form-control m-b">
                     </div>
                 </div>

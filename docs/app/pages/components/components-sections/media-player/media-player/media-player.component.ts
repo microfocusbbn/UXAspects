@@ -15,11 +15,27 @@ export class ComponentsMediaPlayerComponent extends BaseDocumentationSection imp
 
     type: string = 'video';
     mode: string = 'standard';
-    displayName: string = 'Display Name';
+    displayName: string = '';
 
     videoSource: string = require('../../../../../assets/media/catchingwave.mp4');
-    audioSource: string = require('../../../../../assets/media/Ocean-Waves.mp3');
+    audioSource: string = require('../../../../../assets/media/tune.mp3');
     subtitles: string = require('!!file-loader!../../../../../assets/media/subtitles.vtt');
+
+    selectFile(event: any) {
+        const target = event.currentTarget;
+        const file = target.files[0];
+
+        if (target.files && file) {
+            const reader = new FileReader();
+            reader.onload = (event: any) => {
+
+                console.log('event:', event.target.result)
+
+                this.audioSource = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    }
 
     playground: IPlayground = {
         files: {

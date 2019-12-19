@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { fromEvent, Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil, tap } from 'rxjs/operators';
 import { AudioMetadata, AudioService } from '../../services/audio/index';
@@ -24,7 +24,7 @@ import { MediaPlayerService } from './media-player.service';
         '(document:MSFullscreenChange)': 'mediaPlayerService.fullscreenChange()'
     }
 })
-export class MediaPlayerComponent implements AfterViewInit, OnDestroy, OnChanges {
+export class MediaPlayerComponent implements AfterViewInit, OnDestroy {
 
     @ViewChild('player', { static: false }) private _playerRef: ElementRef;
 
@@ -35,10 +35,7 @@ export class MediaPlayerComponent implements AfterViewInit, OnDestroy, OnChanges
     /** The `anonymous` keyword means that there will be no exchange of user credentials when the media source is fetched. */
     @Input() crossorigin: 'use-credentials' | 'anonymous' = 'use-credentials';
 
-    @Input()
-    displayName: string;
-
-
+    @Input() displayName: string;
 
     get source(): string {
         return this.mediaPlayerService.source;
@@ -99,13 +96,6 @@ export class MediaPlayerComponent implements AfterViewInit, OnDestroy, OnChanges
 
         // initially hide all text tracks
         this.mediaPlayerService.hideSubtitleTracks();
-        console.log('metaData', this.audioMetadata);
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log('something changed!');
-        this.audioMetadata = this._audioService.getAudioFileMetadata(this._playerRef.nativeElement, this.displayName);
-
     }
 
     ngOnDestroy(): void {

@@ -18,30 +18,18 @@ export class AudioService {
             this._http.get(mediaElement.src, { responseType: 'blob' }).subscribe(response => {
 
                 const extension = mediaElement.src.substring(mediaElement.src.lastIndexOf('.') + 1).toLowerCase();
-                let filename;
-
+                const base64Matcher = new RegExp('^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$');
+                let filename: string;
                 let description;
 
-
-                if (displayName) {
-                    console.log('display name present')
-                    filename = displayName;
+                // Check if the uploaded source is Base64 encoded.
+                if (base64Matcher.test(mediaElement.src)) {
+                    // If Base64, set filename to null. Hiding in view.
+                    filename = null;
                 } else {
-                    console.log('false')
+                    // If not Base64, get the source filename.
                     filename = mediaElement.src.substring(mediaElement.src.lastIndexOf('/') + 1);
                 }
-
-                // switch (displayName) {
-                //     case 'string':
-                //         filename = displayName;
-                //         break;
-
-                //     default:
-                //         filename = mediaElement.src.substring(mediaElement.src.lastIndexOf('/') + 1);
-                //         break;
-                // }
-
-                console.log(filename);
 
                 switch (extension) {
                     case 'mp3':
@@ -192,5 +180,10 @@ export interface AudioMetadata {
     extension: string;
     description: string;
     size: number;
+    displayName: string;
+}
+
+export interface AudioDisplayName {
+    filename: string;
     displayName: string;
 }
