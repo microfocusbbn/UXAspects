@@ -69,6 +69,12 @@ export class FacetContainerComponent implements OnDestroy {
         this.facetService.select(facet);
     }
 
+    touchdown(event: MouseEvent) {
+        event.preventDefault();
+       event.stopPropagation();
+       console.log(event)
+    }
+
     deselectFacet(facet: Facet, tag?: HTMLElement): void {
 
         // find the index of the item in the selected array
