@@ -179,6 +179,21 @@ export class LebGroupComponent implements OnInit, OnDestroy {
         this.groupChange.emit(this.subExpression);
     }
 
+    public embedConditionAtIndex(id: number) {
+        let tempExpression = this.subExpression;
+        const condition = tempExpression.children[id];
+
+        tempExpression.children[id] = <ExpressionGroup>{
+            type: 'group',
+            logicalOperator: this._lebService.getLogicalOperators()[0].name,
+            children: [condition],
+        };
+
+        this.subExpression = tempExpression;
+
+        this.groupChange.emit(this.subExpression);
+    }
+
     public deleteGroup(): void {
         const position = this.path[this.path.length - 1];
 
