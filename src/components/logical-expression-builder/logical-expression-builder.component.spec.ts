@@ -1,4 +1,4 @@
-import { LogicalExpressionBuilderComponent } from './logical-expression-builder.component';
+/*import { LogicalExpressionBuilderComponent } from './logical-expression-builder.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FieldDefinition } from './interfaces/FieldDefinition';
@@ -49,4 +49,4 @@ describe('LogicalExpressionBuilderComponent', () => {
     it('should be created', () => {
         expect(component).toBeDefined();
     });
-});
+});*/
