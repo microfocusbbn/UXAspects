@@ -135,6 +135,8 @@ export class ComponentsLogicalExpressionBuilderComponent extends BaseDocumentati
 
     preview: Expression;
 
+    valid: boolean;
+
     constructor(public colorService: ColorService) {
         super(require.context('./snippets/', false, /\.(html|css|js|ts)$/));
     }
