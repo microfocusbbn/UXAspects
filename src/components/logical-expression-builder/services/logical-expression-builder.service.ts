@@ -99,4 +99,15 @@ export class LogicalExpressionBuilderService {
     public setLastFocused(path: number[]): void {
         this._lastFocused.next(path);
     }
+
+    // Focus stuff
+    private _lastFocused: BehaviorSubject<[number, number]> = new BehaviorSubject<[number, number]>([-1, -1]);
+
+    public getLastFocused(): Observable<[number, number]> {
+        return this._lastFocused.asObservable();
+    }
+
+    public setLastFocused(ids: [number, number]): void {
+        this._lastFocused.next(ids);
+    }
 }
