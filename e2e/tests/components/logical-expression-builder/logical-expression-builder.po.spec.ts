@@ -160,5 +160,9 @@ export namespace LogicalExpressionBuilderPage {
             const row = await this.getTableRow(index);
             return row.$('.leb-value-display').getText();
         }
+
+        async deleteLastCondition(): Promise<any> {
+            return $$('.btn-delete-condition').last().click();
+        }
     }
 }
