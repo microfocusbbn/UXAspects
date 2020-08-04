@@ -141,5 +141,9 @@ export namespace LogicalExpressionBuilderPage {
 
             return dropdownElement.$$('li').map((_li: ElementFinder) => _li.getText());
         }
+
+        async deleteLastCondition(): Promise<any> {
+            return $$('.btn-delete-condition').last().click();
+        }
     }
 }
