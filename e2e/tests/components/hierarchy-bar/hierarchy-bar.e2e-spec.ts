@@ -145,7 +145,7 @@ describe('Hierarchy Bar Tests - standard Mode', () => {
 
         expect(await page.getSelectedNodeTitle()).toBe('Christian Olson');
 
-        // TODO: enable before PR
+        // To be restored as part of EL-4021:
         // expect(await imageCompare('hierarchy-bar-collapsed')).toEqual(0);
     });
 
