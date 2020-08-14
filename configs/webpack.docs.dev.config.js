@@ -115,6 +115,35 @@ module.exports = {
             {
                 test: /[\/\\]@angular[\/\\].+\.js$/,
                 parser: { system: true }
+            },
+
+            // Downlevel Angular Packages
+            {
+                test: /[\/\\]@angular[\/\\].+\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            [
+                                '@babel/preset-env',
+                                {
+                                    targets: ['chrome 84', 'ie 11',],
+                                    modules: false,
+                                    exclude: ['transform-typeof-symbol'], // 'transform-typeof-symbol' generates slower code
+                                },
+                            ]
+                        ],
+                        plugins: [
+                            ['@babel/plugin-transform-spread', { loose: true }]
+                        ],
+                        inputSourceMap: false,
+                        babelrc: false,
+                        configFile: false,
+                        minified: false,
+                        compact: false,
+                        cacheDirectory: true
+                    }
+                }
             }
         ]
     },
@@ -147,7 +176,6 @@ module.exports = {
     },
 
     plugins: [
-
         new IndexHtmlWebpackPlugin({
             input: './docs/index.html',
             output: 'index.html',
@@ -159,24 +187,26 @@ module.exports = {
             sri: false
         }),
 
-        new CopyWebpackPlugin([
-            {
-                from: join(cwd(), 'docs', 'favicon.ico'),
-                to: join(cwd(), 'dist', 'docs', 'favicon.ico')
-            },
-            {
-                from: join(cwd(), 'docs', 'app', 'assets'),
-                to: join(cwd(), 'dist', 'docs', 'assets')
-            },
-            {
-                from: join(cwd(), 'src', 'fonts'),
-                to: join(cwd(), 'dist', 'docs', 'assets', 'fonts')
-            },
-            {
-                from: join(cwd(), 'src', 'img'),
-                to: join(cwd(), 'dist', 'docs', 'assets', 'img')
-            },
-        ]),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: join(cwd(), 'docs', 'favicon.ico'),
+                    to: join(cwd(), 'dist', 'docs', 'favicon.ico')
+                },
+                {
+                    from: join(cwd(), 'docs', 'app', 'assets'),
+                    to: join(cwd(), 'dist', 'docs', 'assets')
+                },
+                {
+                    from: join(cwd(), 'src', 'fonts'),
+                    to: join(cwd(), 'dist', 'docs', 'assets', 'fonts')
+                },
+                {
+                    from: join(cwd(), 'src', 'img'),
+                    to: join(cwd(), 'dist', 'docs', 'assets', 'img')
+                },
+            ]
+        }),
 
         new AngularCompilerPlugin({
             entryModule: join(cwd(), './docs/app/app.module#AppModule'),

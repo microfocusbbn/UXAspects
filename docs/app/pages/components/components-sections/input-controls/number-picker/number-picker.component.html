@@ -19,7 +19,7 @@
 <p>
     The <code>ux-number-picker</code> component provides a way in which users can easily select a number value from a specified
     range by clicking the up and down buttons, using the up/down arrow keys or by using the mouse wheel while hovering over
-    the control.
+    the control once it has focus.
 </p>
 
 <p>The number picker behavior can be customized by using the following attributes:</p>
@@ -50,6 +50,9 @@
     </tr>
     <tr uxd-api-property name="precision" defaultValue="15" type="number">
         Define the precision of floating point values.
+    </tr>
+    <tr uxd-api-property name="placeholder" type="string">
+        The placeholder text which appears in the text input area when it is empty.
     </tr>
 </uxd-api-properties>
 
