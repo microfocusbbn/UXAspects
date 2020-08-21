@@ -46,4 +46,20 @@
             }
         }
     }
+
+    [uxHoverActionContainer] {
+        [uxHoverAction] {
+            opacity: 0;
+
+            &.hover-action-active {
+                opacity: 0.5;
+            }
+
+            &.hover-action-focused,
+            &:hover,
+            &:focus {
+                opacity: 1;
+            }
+        }
+    }
 }
