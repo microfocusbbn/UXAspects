@@ -21,6 +21,7 @@ import { HoverActionModule } from '../../directives/hover-action/hover-action.mo
 import { MenuModule } from '../menu/menu.module';
 import { IconModule } from '../icon/icon.module';
 import { DisplayValuePipe } from './pipes/display-value.pipe';
+import { FocusIfModule } from '../../directives/focus-if';
 import { ValidationService } from './services/validation.service';
 import { A11yModule } from '@angular/cdk/a11y';
 import { FocusHandlerService } from './services/focus-handler.service';
