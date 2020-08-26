@@ -59,8 +59,6 @@ export class LebConditionComponent implements OnChanges, OnInit, OnDestroy {
 
     private _id: number;
 
-    @Input() indent: number = 0;
-
     public fields: FieldDefinition[];
     public operators: OperatorDefinition[];
 
