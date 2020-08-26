@@ -21,6 +21,8 @@ describe('Dashboard Widgets Tests', () => {
         widgetEnum = await page.getWidget('enum-widget');
         widgetTable = await page.getWidget('table-widget');
         widgetText = await page.getWidget('text-widget');
+
+        await browser.waitForAngular();
     });
 
     // restore the window to its original size after all these tests have run
