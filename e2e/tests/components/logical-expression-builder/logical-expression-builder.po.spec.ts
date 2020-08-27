@@ -129,7 +129,7 @@ export namespace LogicalExpressionBuilderPage {
         }
 
         async deleteLastCondition(): Promise<any> {
-            return $$('.btn-delete-condition').last().click();
+            return $$('.delete-btn').last().click();
         }
 
         async getFieldLabelForRow(index: number): Promise<string> {
