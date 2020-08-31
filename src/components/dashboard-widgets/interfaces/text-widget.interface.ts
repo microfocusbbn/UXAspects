@@ -5,3 +5,10 @@ export interface TextWidgetConfig {
     editable?: boolean;
     textChange?: EventEmitter<string>;
 }
+
+export interface TextWidgetLocalizedStrings {
+    edit: string;
+    showFullText: string;
+    save: string;
+    cancel: string;
+}
