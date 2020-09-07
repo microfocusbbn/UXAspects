@@ -1,30 +1,8 @@
-/* Keep */
-
 tr.leb-condition-row {
     width: 100%;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-
-    &.cdk-keyboard-focused {
-        background-color: @table-hover-bg;
-    }
-
-    &.cdk-mouse-focused {
-        outline: none;
-    }
-
-    &.cdk-mouse-focused {
-        outline: none;
-    }
-
-    &.cdk-mouse-focused {
-        outline: none;
-    }
-
-    &.cdk-mouse-focused {
-        outline: none;
-    }
 
     td {
         margin-right: @spacing-xs;
@@ -37,63 +15,60 @@ tr.leb-condition-row {
     .form-group {
         margin-bottom: 0;
     }
-}
 
-.field-selection {
-    flex: 1;
-}
+    // Edit mode containers
+    .field-selection {
+        flex: 1;
+    }
 
-.operator-selection {
-    flex: 1;
-}
+    .operator-selection {
+        flex: 1;
+    }
 
-.value-input-container {
-    flex: 2;
-}
+    .value-input-container {
+        flex: 2;
+    }
 
-.leb-field-display {
-    font-weight: bold;
-}
+    // Condition Text
+    .leb-field-display {
+        font-weight: bold;
+    }
 
-.leb-value-display {
-    font-weight: bold;
-}
+    .leb-operator-display {
+        color: @grey4;
+    }
 
-.leb-field-display {
-    font-weight: bold;
-}
+    .leb-value-display {
+        font-weight: bold;
+        color: @primary;
+    }
 
-.leb-value-display {
-    color: @primary;
-    font-weight: bold;
-}
+    // Buttons
+    .edit-btn,
+    .confirm-btn {
+        .button-primary;
 
-.condition-focused {
-    .native-focus-outline;
-}
+        &:disabled {
+            .button-primary-disabled;
+        }
+    }
 
-.leb-field-display {
-    font-weight: bold;
-}
+    .embed-btn {
+        .button-secondary;
 
-.leb-value-display {
-    color: @primary;
-    font-weight: bold;
-}
+        &:disabled {
+            .button-secondary-disabled;
+        }
+    }
 
-.condition-focused {
-    .native-focus-outline;
-}
+    .delete-btn,
+    .cancel-btn {
+        .button-warning;
 
-.leb-field-display {
-    font-weight: bold;
-}
-
-.leb-value-display {
-    color: @primary;
-    font-weight: bold;
-}
-
-.condition-focused {
-    .native-focus-outline;
+        &:disabled {
+            background-color: @btn-warning-disabled-bg;
+            color: @btn-warning-disabled-color;
+            border-color: @btn-warning-disabled-border;
+        }
+    }
 }
