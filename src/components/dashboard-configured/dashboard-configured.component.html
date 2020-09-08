@@ -1,0 +1,55 @@
+<ux-dashboard [options]="options">
+    <ng-container *ngFor="let config of configs" [ngSwitch]="config.type">
+        <ux-predefined-widget class="widget"
+                              *ngSwitchCase="'custom'"
+                              [id]="config.id"
+                              [colSpan]="config.colSpan"
+                              [rowSpan]="config.rowSpan"
+                              [name]="config.name"
+                              [heading]="config.heading"
+                              [fixedMode]="config.fixedMode">
+            <ng-container *ngTemplateOutlet="config.template"></ng-container>
+        </ux-predefined-widget>
+
+        <ux-dashboard-actions-widget class="widget"
+                                     *ngSwitchCase="'actions'"
+                                     [id]="config.id"
+                                     [name]="config.name"
+                                     [heading]="config.heading"
+                                     [fixedMode]="config.fixedMode"
+                                     [status]="config.data.status"
+                                     [actions]="config.data.actions">
+        </ux-dashboard-actions-widget>
+
+        <ux-dashboard-enum-widget class="widget"
+                                  *ngSwitchCase="'enum'"
+                                  [id]="config.id"
+                                  [name]="config.name"
+                                  [heading]="config.heading"
+                                  [fixedMode]="config.fixedMode"
+                                  [enums]="config.data.enums"
+                                  [value]="config.data.value">
+        </ux-dashboard-enum-widget>
+
+        <ux-dashboard-table-widget class="widget"
+                                   *ngSwitchCase="'table'"
+                                   [id]="config.id"
+                                   [name]="config.name"
+                                   [heading]="config.heading"
+                                   [fixedMode]="config.fixedMode"
+                                   [header]="config.data.header"
+                                   [data]="config.data.data"
+                                   [rowSpan]="config.data.rowSpan">
+        </ux-dashboard-table-widget>
+
+        <ux-dashboard-text-widget class="widget"
+                                  *ngSwitchCase="'text'"
+                                  [id]="config.id"
+                                  [name]="config.name"
+                                  [heading]="config.heading"
+                                  [fixedMode]="config.fixedMode"
+                                  [text]="config.data.text"
+                                  [editable]="config.data.editable">
+        </ux-dashboard-text-widget>
+    </ng-container>
+</ux-dashboard>

@@ -183,7 +183,22 @@
                     ]
                 },
                 {
-                    "title": "Pre-defined dashboard widgets",
+                    "title": "Configured Dashboard",
+                    "component": "ComponentsDashboardConfiguredComponent",
+                    "version": "Angular",
+                    "usage": [
+                        {
+                            "title": "Selector",
+                            "content": "ux-dashboard-configured"
+                        },
+                        {
+                            "title": "Module",
+                            "content": "DashboardConfiguredModule"
+                        }
+                    ]
+                },
+                {
+                    "title": "Pre-defined Dashboard widgets",
                     "component": "ComponentsDashboardWidgetsComponent",
                     "version": "Angular",
                     "usage": [
