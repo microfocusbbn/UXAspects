@@ -1,4 +1,3 @@
-/*
 import { LebGroupComponent } from './leb-group.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
@@ -44,6 +43,8 @@ describe('LebGroupComponent', () => {
 
     const validationService: Partial<ValidationService> = {
         setValidationState(_: number[], __: boolean) {
+        },
+        removeValidationState(_: number[]) {
         }
     };
 
@@ -93,4 +94,3 @@ describe('LebGroupComponent', () => {
         expect(component).toBeDefined();
     });
 });
-*/
